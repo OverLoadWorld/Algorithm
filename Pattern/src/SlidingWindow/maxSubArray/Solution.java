@@ -43,6 +43,14 @@ class Solution {
         return subArrayMax;
     }
 
+    /**
+     * Runtime: 0 ms
+     * Memory Usage: 39.7 MB
+     * Your runtime beats 100.00 % of java submissions.
+     * Your memory usage beats 7.04 % of java submissions.
+     * @param nums
+     * @return
+     */
     public int maxSubArraySubmit(int[] nums) {
         int subArrayMax = nums[0], currySubArrayMax = nums[0];
         for (int i = 1; i < nums.length; i++) {
