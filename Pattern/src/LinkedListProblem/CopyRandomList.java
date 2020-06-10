@@ -11,7 +11,8 @@ import java.util.Map;
 public class CopyRandomList {
 
     /**
-     * Next pointer of node with label 7 from the original list was modified.
+     * 执行耗时:0 ms,击败了100.00% 的Java用户
+     * 内存消耗:43.4 MB,击败了5.02% 的Java用户
      * @param head
      * @return
      */
@@ -36,24 +37,12 @@ public class CopyRandomList {
             index = index.next.next;
         }
 
+        //把两条链表解开
         index = head;
         while (index != null) {
-            if (index.next != null) {
-                index.next = index.next.next;
-            }
-
-            if (index.next.next != null) {
-                index.next.next = index.next.next.next;
-            }
-            index = index.next.next;
-        }
-
-        index = newHead;
-        while (index != null) {
-            if (index.next != null) {
-                index.next = index.next.next;
-            }
-            index = index.next;
+            Node nextIndex = index.next;
+            index.next = index.next == null ? null : index.next.next;
+            index = nextIndex;
         }
         return newHead;
     }
@@ -106,7 +95,7 @@ public class CopyRandomList {
 
 
     public static void main(String[] args) {
-        /*Node e = new Node(1);
+        Node e = new Node(1);
         Node d = new Node(10);
         Node c = new Node(11);
         Node b = new Node(13);
@@ -120,9 +109,9 @@ public class CopyRandomList {
         d.next = e;
         d.random = c;
         e.next = null;
-        e.random = a;*/
-        Node a = new Node(-1);
-        a.random = null;
+        e.random = a;
+/*        Node a = new Node(-1);
+        a.random = null;*/
         showNodeList(a);
         showNodeList(new CopyRandomList().copyRandomList(a));
     }
