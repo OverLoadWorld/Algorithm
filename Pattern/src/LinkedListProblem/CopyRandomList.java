@@ -11,12 +11,60 @@ import java.util.Map;
 public class CopyRandomList {
 
     /**
+     * Next pointer of node with label 7 from the original list was modified.
+     * @param head
+     * @return
+     */
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Node index = head;
+        Node newHead = null;
+        while (index != null) {
+            Node newNode = new Node(index.val);
+            newNode.next = index.next;
+            index.next = newNode;
+            if (index == head) {
+                newHead = newNode;
+            }
+            index = index.next.next;
+        }
+        index = head;
+        while (index != null) {
+            index.next.random = index.random == null ? null : index.random.next;
+            index = index.next.next;
+        }
+
+        index = head;
+        while (index != null) {
+            if (index.next != null) {
+                index.next = index.next.next;
+            }
+
+            if (index.next.next != null) {
+                index.next.next = index.next.next.next;
+            }
+            index = index.next.next;
+        }
+
+        index = newHead;
+        while (index != null) {
+            if (index.next != null) {
+                index.next = index.next.next;
+            }
+            index = index.next;
+        }
+        return newHead;
+    }
+
+    /**
      * Runtime: 1 ms, faster than 15.63% of Java online submissions for Copy List with Random Pointer.
      * Memory Usage: 42.9 MB, less than 8.21% of Java online submissions for Copy List with Random Pointer.
      * @param head
      * @return
      */
-    public Node copyRandomList(Node head) {
+    public Node copyRandomList1(Node head) {
         if (head == null) {
             return null;
         }
@@ -58,7 +106,7 @@ public class CopyRandomList {
 
 
     public static void main(String[] args) {
-/*        Node e = new Node(1);
+        /*Node e = new Node(1);
         Node d = new Node(10);
         Node c = new Node(11);
         Node b = new Node(13);
