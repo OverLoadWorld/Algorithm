@@ -14,5 +14,19 @@ public class PCRegisterTest {
         String s = "sadf";
         System.out.println(i);
         System.out.println(k);
+        new PCRegisterTest().test1();
+    }
+
+    public  void test1() {
+        System.out.println("shit");
+    }
+
+    public  void test2() {
+        int a = 0;
+        {
+            int b = 0;
+            b = a + 1;
+        }
+        int c = a + 1;
     }
 }
