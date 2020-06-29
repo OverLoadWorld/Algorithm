@@ -2,14 +2,13 @@ package StackQueueHeap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @Description:
  * @Author: ZhaoZhenHua1 Administrator
- * @Date: 2020/6/24 16:25
+ * @Date: 2020/6/28 16:54
  */
-public class MaxHeap<T extends Comparable> {
+public class MinHeap <T extends Comparable> {
 
     private T[] data; // 数据存储
     private int count; // 堆目前所含数据量大小
@@ -30,13 +29,13 @@ public class MaxHeap<T extends Comparable> {
         return i / 2;
     }
 
-    public MaxHeap(int capacity) {
+    public MinHeap(int capacity) {
         this.capacity = capacity;
         this.count = 0;
         this.data = (T[]) new Comparable[capacity + 1];
     }
 
-    public MaxHeap(T[] data, int capacity) {
+    public MinHeap(T[] data, int capacity) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("capacity must not be 0");
         }
@@ -58,29 +57,6 @@ public class MaxHeap<T extends Comparable> {
         }
     }
 
-    public void add(T value) {
-        Objects.requireNonNull(value, "value must not be null");
-        if (count >= capacity - 1) {
-            return;
-        }
-        ++count;
-        this.data[count] = value;
-        heapUp(count);
-    }
-
-    public T remove() {
-        if (count == 0) {
-            return null;
-        }
-        T value = this.data[1];
-        this.data[1] = this.data[this.count];
-        this.data[this.count] = null;
-        --this.count;
-
-        heapDown(count, 1);
-        return value;
-    }
-
     /**
      * 上浮
      */
@@ -93,7 +69,7 @@ public class MaxHeap<T extends Comparable> {
         }
 
         while (nodeIndex > 0 && parent(nodeIndex) >0
-                && data[nodeIndex].compareTo(data[parent(nodeIndex)]) > 0) {
+                && data[nodeIndex].compareTo(data[parent(nodeIndex)]) < 0) {
 
             swap(nodeIndex, parent(nodeIndex));
             nodeIndex = parent(nodeIndex);
@@ -111,10 +87,10 @@ public class MaxHeap<T extends Comparable> {
             int maxPos = i;
             int left = left(i);
             int right = right(i);
-            if (left <= n && this.data[i].compareTo(this.data[left]) < 0) {
+            if (left <= n && this.data[i].compareTo(this.data[left]) > 0) {
                 maxPos = left;
             }
-            if (right <= n && this.data[maxPos].compareTo(this.data[right]) < 0) {
+            if (right <= n && this.data[maxPos].compareTo(this.data[right]) > 0) {
                 maxPos = right;
             }
             if (maxPos == i) {
@@ -137,5 +113,11 @@ public class MaxHeap<T extends Comparable> {
         T tempValue = this.data[i];
         this.data[i] = this.data[j];
         this.data[j] = tempValue;
+    }
+
+    public static void main(String[] args) {
+        Integer[] data = new Integer[]{2,6,1,5,4,9};
+        MinHeap minHeap = new MinHeap(data, 7);
+        System.out.println("1");
     }
 }
