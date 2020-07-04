@@ -13,10 +13,10 @@ public class HeapSpaceInitial {
          * 因为eden区和s区之一才能又数据，所以少了一个s区
          */
 
-//        try {
-//            Thread.sleep(1000000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Thread.sleep(1000000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
