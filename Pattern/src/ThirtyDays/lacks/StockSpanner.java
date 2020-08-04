@@ -105,7 +105,7 @@ public class StockSpanner {
     }
 
     public static void main(String[] args) {
-        StockSpanner obj = new StockSpanner();
+/*        StockSpanner obj = new StockSpanner();
         int param_1 = obj.next(100);
         int param_2 = obj.next(80);
         int param_3 = obj.next(60);
@@ -119,6 +119,8 @@ public class StockSpanner {
         System.out.println(param_4);
         System.out.println(param_5);
         System.out.println(param_6);
-        System.out.println(param_7);
+        System.out.println(param_7);*/
+
+
     }
 }
